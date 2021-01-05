@@ -1,12 +1,10 @@
 import {
-  IonButton,
   IonCard,
   IonCardContent,
   IonCol,
   IonContent,
   IonGrid,
   IonHeader,
-  IonItem,
   IonPage,
   IonRow,
   IonTitle,
@@ -19,6 +17,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useStore } from '../store/store';
 import { State } from '../types/state';
 import { Actions } from '../types/actions';
+import Card from '../components/Card';
 
 const Home: React.FC = () => {
   const [number, setNumber] = useState<string | null>(null);
@@ -36,14 +35,14 @@ const Home: React.FC = () => {
     dispatch,
   } = useStore();
   const sendMsg = () => {
-    window.open(`https://api.whatsapp.com/send?phone=91${number}&text=${msg}`);
+    window.open(`https://api.whatsapp.com/send?phone=91${phoneNumber}&text=${message}`);
   };
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color='success'>
-          <IonTitle>WhatsApp stranger</IonTitle>
+          <IonTitle className='ion-text-center'>WhatsApp stranger</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent style={{ background: 'red' }}>
@@ -51,38 +50,7 @@ const Home: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol sizeMd='6' offsetMd='3'>
-                <IonCard>
-                  <IonCardContent className='ion-padding'>
-                    <div className='ion-margin-top'></div>
-                    <TextField
-                      type='number'
-                      value={phoneNumber}
-                      variant='outlined'
-                      placeholder='Enter Number'
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        number!.length <= 10 &&
-                          dispatch({ type: Actions.setPhoneNumber, payload: value });
-                      }}
-                      fullWidth
-                    />
-                    <div className='ion-margin-top'></div>
-                    <TextField
-                      variant='outlined'
-                      placeholder='Message...'
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        dispatch({ type: Actions.setMessage, payload: value });
-                      }}
-                      fullWidth
-                    />
-                    <div className='ion-text-end ion-padding-top'>
-                      <Button variant='outlined' color='primary' size='large' onClick={sendMsg}>
-                        Send
-                      </Button>
-                    </div>
-                  </IonCardContent>
-                </IonCard>
+                <Card clicked={sendMsg} />
               </IonCol>
             </IonRow>
           </IonGrid>
