@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "react-ionic",
+  "appId": "com.freakyharsh.codekage",
+  "appName": "Whatsapp stranger",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",

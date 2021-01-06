@@ -32,7 +32,6 @@ const Home: React.FC = () => {
   });
   const {
     state: { phoneNumber, message },
-    dispatch,
   } = useStore();
   const sendMsg = () => {
     window.open(`https://api.whatsapp.com/send?phone=91${phoneNumber}&text=${message}`);
@@ -47,7 +46,7 @@ const Home: React.FC = () => {
       </IonHeader>
       <IonContent style={{ background: 'red' }}>
         <ThemeProvider theme={theme}>
-          <IonGrid>
+          <IonGrid style={{ marginTop: '1rem' }}>
             <IonRow>
               <IonCol sizeMd='6' offsetMd='3'>
                 <Card clicked={sendMsg} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Button, TextField } from '@material-ui/core';
 import { IonCard, IonCardContent } from '@ionic/react';
@@ -9,6 +9,7 @@ function Card({ clicked }: { clicked: () => void }) {
     state: { phoneNumber, message },
     dispatch,
   } = useStore();
+
   return (
     <IonCard style={{ border: ' 1px solid lightgreen' }}>
       <IonCardContent className='ion-padding'>
@@ -20,7 +21,7 @@ function Card({ clicked }: { clicked: () => void }) {
           placeholder='Enter Number'
           onChange={(e) => {
             const value = e.target.value;
-            phoneNumber!.length <= 10 && dispatch({ type: Actions.setPhoneNumber, payload: value });
+            value.length <= 10 && dispatch({ type: Actions.setPhoneNumber, payload: value });
           }}
           fullWidth
         />
@@ -32,6 +33,8 @@ function Card({ clicked }: { clicked: () => void }) {
             const value = e.target.value;
             dispatch({ type: Actions.setMessage, payload: value });
           }}
+          multiline
+          rows={4}
           fullWidth
         />
         <div className='ion-text-end ion-padding-top'>
